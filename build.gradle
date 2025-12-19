@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation(
+            "org.junit.jupiter:junit-jupiter-api:5.10.0",
+            "org.seleniumhq.selenium:selenium-java:4.39.0",
+            "org.junit.jupiter:junit-jupiter-engine:5.10.0",
+            "io.github.bonigarcia:webdrivermanager:6.3.3",
+            "org.aeonbits.owner:owner:1.0.4",
+            "org.assertj:assertj-core:3.27.6"
+        )
+}
+
+tasks.withType(Test) {
+    useJUnitPlatform()
+    systemProperties(System.getProperties())
+    systemProperty("launchMode", project.findProperty("launchMode"))
+}
+
+tasks.register('launch_mode', Test) {
+    useJUnitPlatform {
+        includeTags("launch_mode")
+    }
+}
