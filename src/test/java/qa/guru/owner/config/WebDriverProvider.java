@@ -10,6 +10,7 @@ import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.function.Supplier;
 
@@ -23,12 +24,16 @@ public class WebDriverProvider implements Supplier<WebDriver> {
 
     @Override
     public WebDriver get() {
-        WebDriver driver = createDriver();
-        driver.get(config.getBaseURL());
-        return driver;
+        try {
+            WebDriver driver = createDriver();
+            driver.get(config.getBaseURL());
+            return driver;
+        } catch (MalformedURLException e) {
+            throw new RuntimeException("Failed to initialize the web driver.", e); // Перебрасываем как runtime exception
+        }
     }
 
-    public WebDriver createDriver() {
+    public WebDriver createDriver() throws MalformedURLException {
 
         if (config.getRemoteURL().isEmpty()) {
             // Локальный запуск теста
@@ -70,6 +75,5 @@ public class WebDriverProvider implements Supplier<WebDriver> {
                 }
             }
         }
-        throw new RuntimeException("No such browser");
     }
 }
