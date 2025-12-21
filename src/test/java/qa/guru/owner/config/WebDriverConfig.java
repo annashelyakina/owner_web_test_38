@@ -21,5 +21,5 @@ public interface WebDriverConfig extends Config {
     String getBrowserVersion();
 
     @Key("webdriver.remote")
-    URL getRemoteURL();
+    String getRemoteURL();
 }
