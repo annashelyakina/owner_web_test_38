@@ -2,6 +2,8 @@ package qa.guru.owner.config;
 
 import org.aeonbits.owner.Config;
 
+import java.net.URL;
+
 @Config.Sources({
         "classpath:${launch}.properties",
         "classpath:local.properties"
@@ -18,7 +20,6 @@ public interface WebDriverConfig extends Config {
     @Key("webdriver.browserVersion")
     String getBrowserVersion();
 
-    @DefaultValue("")
     @Key("webdriver.remote")
-    String getRemoteURLAsString();
+    URL getRemoteURL();
 }
