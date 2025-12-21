@@ -1,3 +1,5 @@
 Запуск теста в терминале в IDEA:
-* gradle clean build test -Dlaunch=local - локальный запуск в CHROME
-* gradle clean build test -Dlaunch=remote - удалённый звпуск в selenoid
+* локальный запуск в CHROME:
+   <code>gradle clean build test -Dlaunch=local</code>
+* удалённый запуск в selenoid:
+   <code>gradle clean build test -Dlaunch=remote</code>
