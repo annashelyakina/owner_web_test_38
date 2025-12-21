@@ -8,7 +8,7 @@ import qa.guru.owner.config.WebDriverProvider;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class WebDriverTest {
+public class WebDriverTest extends TestBase{
 
     private WebDriver driver;
 
@@ -17,7 +17,7 @@ public class WebDriverTest {
         driver = new WebDriverProvider().get();
     }
 
-    @Test
+   @Test
     public void testArcadia(){
         String title = driver.getTitle();
         assertEquals("Разработка программного обеспечения на заказ | Аркадия", title);
